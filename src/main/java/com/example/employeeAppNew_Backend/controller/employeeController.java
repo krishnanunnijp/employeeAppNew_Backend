@@ -13,4 +13,8 @@ public class employeeController {
     public String add() {
         return "add page";
     }
+    @GetMapping("/search")
+    public String search() {
+        return "welcome to search page";
+    }
 }
