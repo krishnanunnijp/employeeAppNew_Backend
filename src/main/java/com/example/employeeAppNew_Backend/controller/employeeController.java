@@ -21,4 +21,8 @@ public class employeeController {
     public String view() {
         return "welcome to view employee page";
     }
+    @GetMapping("/edit")
+    public String edit() {
+        return "welcome to edit employee page";
+    }
 }
