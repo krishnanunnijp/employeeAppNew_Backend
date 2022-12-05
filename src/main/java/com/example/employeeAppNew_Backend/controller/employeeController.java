@@ -11,6 +11,14 @@ public class employeeController {
     }
     @GetMapping("/add")
     public String add() {
-        return "add page";
+        return "add employee page";
+    }
+    @GetMapping("/search")
+    public String search() {
+        return "welcome to search employee page";
+    }
+    @GetMapping("/view")
+    public String view() {
+        return "welcome to view employee page";
     }
 }
