@@ -1,6 +1,9 @@
 package com.example.employeeAppNew_Backend.controller;
 
+import com.example.employeeAppNew_Backend.model.employee;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -9,23 +12,26 @@ public class employeeController {
     public String welcome() {
         return "welcome to welcome page";
     }
-    @GetMapping("/add")
-    public String add() {
+
+
+    @PostMapping(path = "/add", consumes = "application/json",produces = "application/json")
+    public String add(@RequestBody employee e ) {
+        System.out.println(e.toString());
         return "add employee page";
     }
-    @GetMapping("/search")
+    @PostMapping("/search")
     public String search() {
         return "welcome to search employee page";
     }
-    @GetMapping("/view")
+    @PostMapping("/view")
     public String view() {
         return "welcome to view employee page";
     }
-    @GetMapping("/edit")
+    @PostMapping("/edit")
     public String edit() {
         return "welcome to edit employee page";
     }
-    @GetMapping("/delete")
+    @PostMapping("/delete")
     public String delete() {
         return "welcome to delete employee page";
     }
