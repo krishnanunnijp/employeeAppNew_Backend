@@ -1,7 +1,12 @@
 package com.example.employeeAppNew_Backend.controller;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.example.employeeAppNew_Backend.dao.employeeDao;
+import com.example.employeeAppNew_Backend.model.employee;
+import org.hibernate.engine.spi.SessionDelegatorBaseImpl;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 public class employeeController {
@@ -9,17 +14,23 @@ public class employeeController {
     public String welcome() {
         return "welcome to welcome page";
     }
-    @GetMapping("/add")
-    public String add() {
+@Autowired
+    private employeeDao dao;
+
+    @CrossOrigin(origins = "*")
+    @PostMapping("/add")
+    public String add(@RequestBody employee e) {
+        dao.save(e);
         return "add employee page";
     }
     @GetMapping("/search")
     public String search() {
         return "welcome to search employee page";
     }
+    @CrossOrigin(origins = "*")
     @GetMapping("/view")
-    public String view() {
-        return "welcome to view employee page";
+    public List<employee> view() {
+        return (List<employee>) dao.findAll();
     }
     @GetMapping("/edit")
     public String edit() {
