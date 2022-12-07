@@ -6,6 +6,7 @@ import org.hibernate.engine.spi.SessionDelegatorBaseImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
 
 @RestController
@@ -19,13 +20,18 @@ public class employeeController {
 
     @CrossOrigin(origins = "*")
     @PostMapping("/add")
-    public String add(@RequestBody employee e) {
+    public HashMap<String,String> add(@RequestBody employee e) {
+        HashMap<String,String> map=new HashMap<>();
         dao.save(e);
-        return "add employee page";
+        map.put("status","success");
+        return map;
     }
-    @GetMapping("/search")
-    public String search() {
-        return "welcome to search employee page";
+    @CrossOrigin(origins = "*")
+    @PostMapping(path = "/search",consumes = "application/json",produces = "application/json")
+    public List<employee> search(@RequestBody employee e) {
+        String empcode= String.valueOf(e.getEmployeeCode());
+        System.out.println(empcode);
+        return (List<employee>) dao.searchEmployees(e.getEmployeeCode());
     }
     @CrossOrigin(origins = "*")
     @GetMapping("/view")
