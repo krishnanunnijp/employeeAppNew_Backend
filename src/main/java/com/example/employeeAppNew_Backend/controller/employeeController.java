@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
+import java.util.Hashtable;
 import java.util.List;
 
 @RestController
@@ -42,8 +43,14 @@ public class employeeController {
     public String edit() {
         return "welcome to edit employee page";
     }
-    @GetMapping("/delete")
-    public String delete() {
-        return "welcome to delete employee page";
+    @CrossOrigin(origins = "*")
+    @PostMapping (path = "/delete",consumes = "application/json",produces = "application/json")
+    public HashMap<String,String> delete(@RequestBody employee e) {
+        String empid=String.valueOf(e.getId());
+        System.out.println(empid);
+        dao.deleteEmployee(e.getId());
+        HashMap<String, String> map = new HashMap<>();
+        map.put("status","success");
+        return map;
     }
 }

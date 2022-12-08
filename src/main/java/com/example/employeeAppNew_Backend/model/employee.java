@@ -51,6 +51,10 @@ public class employee {
         this.password = password;
     }
 
+    public int getId() {
+        return id;
+    }
+
     public int getEmployeeCode() {
         return employeeCode;
     }
